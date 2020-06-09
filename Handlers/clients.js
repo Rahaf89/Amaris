@@ -1,8 +1,15 @@
 const db = require('./Models/DB_Config');
 
+const clientService = new ClientService(pool)
+
+class ClientService {
+  constructor(db) {
+    this.db = db;
+  }
+
 //get the user linked to the policies number
 
-const getAllclients = (request, response) => {
+ getAllclients = (request, response) => {
 
   this.db.query('SELECT clients.* FROM clients join policies on clients.id = policies.clientid', (error, results) => {
     if (error) {
@@ -13,7 +20,7 @@ const getAllclients = (request, response) => {
 } 
 
 // get the user filtered by id
-const getclientById = (request, response) => {
+getclientById = (request, response) => {
 
   this.db.query('SELECT * FROM clients WHERE id = $1', [clientid], (error, results) => {
     if (error) {
@@ -24,7 +31,7 @@ const getclientById = (request, response) => {
 }
 
 // get the user filtered by name
-const getclientByName = (request, response) => {
+getclientByName = (request, response) => {
     const nameQuery = req.query.name
   
     let query = `SELECT * FROM clients ORDER BY name`
