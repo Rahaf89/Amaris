@@ -1,4 +1,4 @@
-const authAdmin = require('../middlewares/auth-admin');
+const authAdmin = require('../middlewares/auth');
 
 router.get('/admin', authAdmin, (req,res) => {
     res.render('admin');

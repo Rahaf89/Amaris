@@ -1,4 +1,4 @@
-const db = require('./Models/DB_Config');
+const db = require('./Models/dbConfig');
 
 const clientService = new ClientService(pool)
 

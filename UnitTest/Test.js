@@ -1,4 +1,4 @@
-const data = require('./Models/DB_Config'); 
+const data = require('./Models/dbConfig'); 
 import app from "./App"
 
 app.use(function (err, req, res, next) {

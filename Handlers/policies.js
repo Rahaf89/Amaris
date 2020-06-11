@@ -1,4 +1,4 @@
-const db = require('./Models/DB_Config'); 
+const db = require('./Models/dbConfig'); 
 
 // get the list of policies linked to the user name 
 
