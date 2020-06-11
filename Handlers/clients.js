@@ -1,11 +1,4 @@
-const db = require('./Models/dbConfig');
-
-const clientService = new ClientService(pool)
-
-class ClientService {
-  constructor(db) {
-    this.db = db;
-  }
+const db = require('../Models/dbConfig');
 
 //get the user linked to the policies number
 
@@ -44,8 +37,6 @@ getclientByName = (request, response) => {
       response.status(200).json(results.rows)
     };
   }
-
-  
 
   module.exports = {
     getAllclients,

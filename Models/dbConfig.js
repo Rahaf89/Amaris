@@ -1,6 +1,5 @@
-
-const Pool = require('./node_modules/pg').Pool
-const secrets = require("../secrets");
+const secrets = require("./secrets");
+const { Pool } = require("pg");
 
 const pool = new Pool({
   user: secrets.dbuser,
@@ -9,5 +8,6 @@ const pool = new Pool({
   password: secrets.dbPassword,
   port: 5432
 });
+
 
 
