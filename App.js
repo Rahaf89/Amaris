@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require("body-parser"); 
 const usersRouter = require('./Handlers/clients');
 const policiesRouter = require('./Handlers/policies');
-
 const router = express.Router();
 
 
