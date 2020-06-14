@@ -1,4 +1,3 @@
-const db = require('../Models/dbConfig'); 
 
 // get the list of policies linked to the user name 
 

@@ -1,33 +1,19 @@
-var jwt = require('jwt-simple')
-var router = require('express').Router()
-var jwt    = require('jwt')
-var User   = require('./models/dbConfig')
+const authMiddleware = (db) => {
+  return (req, res, next) => {
+    // read the header like req.headers["x-auth-user"]
+    const userId = req.headers['x-auth-user']
+    if (!userId) {
+      return res.sendStatus(401);
+    }
 
+    db.query("SELECT role from clients where id = $1", [userId], (error, results) => {
+      // check if (results.length)
+      // get first result
+      // add role to `req`
+      
+      next();
+    });  
+  };
+};
 
-router.get('/clients', function (req, res, next) {
-  if (!req.headers['x-auth']) {
-    return res.sendStatus(401)
-  }
-  var auth = jwt(req.headers['x-auth'])
-  User.findOne({username: auth.username}, function (err, user) {
-    if (err) { return next(err) }
-    res.json(user)
-  })
-})
-
-router.post('/clients', function (req, res, next) {
-  var user = new User({username: req.body.username})
-    if (err) { return next(err) }
-    user.save(function (err) {
-      if (err) { return next(err) }
-      res.sendStatus(201)
-    })
-  })
-
-module.exports = router
-
-module.exports = function (req, res, next) {
-  if (req.headers['x-auth']) {
-    req.auth = jwt(req.headers['x-auth'])
-  }
-}
+module.exports = authMiddleware;
