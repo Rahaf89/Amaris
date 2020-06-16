@@ -12,14 +12,13 @@ const authMiddleware = (db) => {
       // get first result
       (result) => res.json(result.rows[0]);
       // add role to `req`
-      var isAdmin = req.role.admin
-    if (isAdmin) 
-    return next();
-    }
-      
+      var admin = req.clients.role
+    if (admin) {
       next();
-    });  
-  }
+    }
+    
+    };  
+  })
 };
-
+}
 module.exports = authMiddleware;
