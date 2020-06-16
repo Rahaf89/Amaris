@@ -23,7 +23,7 @@ app.use(authMiddleware(pool));
 
 
 app.use("/users", usersRouter(pool));
-app.use("/policies", policiesRouter(pool));
+app.use("/policies", usersRouter(pool));
 
 
 app.listen(3000, function() {
