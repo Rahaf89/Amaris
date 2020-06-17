@@ -17,7 +17,6 @@ const pool = new Pool({
   port: 5432
 });
 
-
 app.use(bodyParser.json());
 app.use(authMiddleware(pool));
 

@@ -1,7 +1,5 @@
-const data = require('./Models/dbConfig'); 
-import app from "./App"
 
-app.use(function (err, req, res, next) {
-    console.error(err.stack)
-    res.status(500).send('Something broke!')
-  })
+// This test fails because 1 !== 2
+it('Testing to see if Jest works', () => {
+  expect(1).toBe(1)
+})
