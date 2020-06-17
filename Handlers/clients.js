@@ -5,7 +5,7 @@ const express = require('express')
 function makeRouter(db) {
   const router = express.Router()
   router.get ('/' , (request, response) => {
-    if (request.clients.role === "admin") {
+    if (request.clients === "admin") {
     db.query('SELECT clients.* FROM clients join policies on clients.id = policies.clientid', (error, results) => {
       if (error) {
         throw error

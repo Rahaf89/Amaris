@@ -12,7 +12,9 @@ const authMiddleware = (db) => {
       // get first result
        res.json(results.rows[0]);
       // add role to `req`
-      var admin = req.clients.role
+      var admin = req.client = {
+        role: "Admin"
+      }
     if (admin) {
       next();
     }
