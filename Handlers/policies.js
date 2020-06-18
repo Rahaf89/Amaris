@@ -1,23 +1,39 @@
-const express = require('express')
+const express = require("express");
+const { checkAdminMiddleware } = require("../auth");
 
-// get the list of policies linked to the user name 
+function policiesRouter(db) {
+  const router = express.Router();
 
-function makeRouter(db) {
-  const router = express.Router()
-  router.get('/' , (request, response) => {
-  db.query("SELECT policies.* name FROM clients join policies on clients.id = policies.clientid", (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
+  // get all the policies
+  router.get("/", checkAdminMiddleware, (req, res, next) => {
+    db.query(
+      "SELECT policies.*, clients.name FROM clients join policies on clients.id = policies.clientid",
+      (error, results) => {
+        if (error) {
+          return next(error);
+        }
+        res.status(200).json(results.rows);
+      }
+    );
+  });
+
+  // get the policies linked to a specific user
+  router.get("/name/:name", checkAdminMiddleware, (req, res, next) => {
+    const { name } = req.params;
+
+    db.query(
+      "SELECT policies.*, clients.name FROM clients join policies on clients.id = policies.clientid where clients.name ilike $1",
+      [`%${name}%`],
+      (error, results) => {
+        if (error) {
+          return next(error);
+        }
+        res.status(200).json(results.rows);
+      }
+    );
+  });
+
   return router;
 }
-)}
 
-module.exports = makeRouter;
-
-
-
-
-  
+module.exports = policiesRouter;
