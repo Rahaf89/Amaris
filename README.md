@@ -25,7 +25,7 @@ Requests must have the header X-Auth-User set to the ID of an existing user. Req
 * GET /users/name/:name returns filtered by user name
 * GET /users/id/:id returns users filtered by user id
 * GET /policies/name/:name returns policies linked to user name
-* GET /users/policies/:policyNum returns users linked to policy number
+* GET /users/policy/:id returns users linked to policy number
 
 
 
