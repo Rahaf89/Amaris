@@ -8,7 +8,7 @@ This project is an example on how to create an api storing and retrieving inform
 How to make it work?
 In order to run this project you must:
 
-*	Git fork and Git clone the project
+*	Fork and clone the project
 *	Excute the querys from dbClient and dbPolicies in your PostgreSQL database
 *	Add secrets.js file in Config folder and adjust it according to your database configurations like what setted in secretExample.js file.
 *	Execute npm install in order to install all dependencies
